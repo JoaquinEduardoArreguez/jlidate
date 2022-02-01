@@ -1,0 +1,16 @@
+{
+  "name": "jlidate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "clear && jest --verbose ",
+    "debug": "clear && node --inspect-brk node_modules/.bin/jest "
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^27.4.7"
+  }
+}
