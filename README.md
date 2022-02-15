@@ -1,8 +1,8 @@
 # JLidate
-The JSON validator you could have built.
+The JSON data validator you could have built.
 
 ## Schemas
-Schemas declare the structure thats going to be used to validate payloads.
+Schemas declare the structures used to validate JSON objects.
 
 Available types are :
 * `string`
