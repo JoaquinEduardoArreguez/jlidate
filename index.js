@@ -4,7 +4,6 @@ class Jlidate {
   constructor(schema = {}) {
     this.schema = schema;
     this.validationErrors = [];
-    //    this.strategies = require("./strategies");
     this.objectValidator = require("./strategies/validator.object");
   }
 
