@@ -1,0 +1,155 @@
+## Number
+
+```json
+// Description
+{
+  "type": "number",
+  "minimum": "number >= minimum",
+  "maximum": "number <= maximum",
+}
+```
+
+```json
+// Example
+{
+  "type": "object",
+  "properties": {
+    "someNumber": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 10
+    }
+  }
+}
+```
+
+## Boolean
+
+```json
+// Description
+{
+  "type": "boolean"
+}
+```
+
+```json
+// Example
+{
+  "type": "object",
+  "properties": {
+    "someBoolean": {
+      "type": "boolean"
+    }
+  }
+}
+```
+
+## String
+
+```json
+// Description
+{
+  "type": "string"
+}
+```
+
+```json
+// Example
+{
+  "type": "object",
+  "properties": {
+    "someString": {
+      "type": "string"
+    }
+  }
+}
+```
+
+## Object
+
+```json
+// Description
+{
+  "type": "object",
+  "properties": "Object where each property is the schema used to validate that property"
+}
+```
+
+```json
+// Example
+{
+  "type": "object",
+  "properties": {
+    "someBoolean": {"type": "boolean"},
+    "someString": {"type": "string"},
+    "someNumber": {
+      "type": "number",
+      "minimum": -100,
+      "maximum": 100
+    },
+    "someAnidatedObject":{
+      "type": "object",
+      "properties": {
+        "someBoolean": {"type": "boolean"},
+        "someString": {"type": "string"},        
+      }
+    }
+  }
+}
+```
+
+## Array
+
+```json
+// Description
+{
+  "type": "array",
+  "items": "Object that is the schema used to validate that item"
+}
+
+```
+
+```json
+// Example: Array of Strings
+{
+  "type": "object",
+  "properties": {
+    "someArrayOfStrings": {
+      "type": "array",
+      "items": {"type": "string"}
+    }
+  }
+}
+
+// Example: Array of Numbers
+{
+  "type": "object",
+  "properties": {
+    "someArrayOfStrings": {
+      "type": "array",
+      "items": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 10
+        }
+    }
+  }
+}
+
+// Example: Array of Objects
+{
+  "type": "object",
+  "properties": {
+    "someArrayOfStrings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "someString": {"type": "string"},
+          "someBoolean": {"type": "boolean"}
+        }
+      }
+    }
+  }
+}
+```
