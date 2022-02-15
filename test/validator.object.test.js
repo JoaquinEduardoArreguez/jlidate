@@ -101,13 +101,13 @@ describe("Jlidate object validator", () => {
     expect(validator.getErrors()).toEqual([
       "",
       [
-        "property dni(36409123) is not a number",
+        "property dni(36409123) is not number",
         "relatives",
         [
           "parents",
           [
-            "property parentsNumber(true) is not a number",
-            "property father(1) is not a string",
+            "property parentsNumber(true) is not number",
+            "property father(1) is not string",
           ],
         ],
       ],
