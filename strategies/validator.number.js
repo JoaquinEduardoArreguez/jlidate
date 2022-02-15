@@ -14,7 +14,7 @@ function apply({ key, value }, conditions = {}) {
       );
     }
   } else {
-    errors.push(`property ${key}(${value}) is not a ${conditions.type}`);
+    errors.push(`property ${key}(${value}) is not ${conditions.type}`);
   }
   return errors;
 }
