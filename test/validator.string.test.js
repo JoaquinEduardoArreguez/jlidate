@@ -26,7 +26,7 @@ describe("Jlidate string validator", () => {
     expect(validationResult).toEqual(false);
     expect(validator.getErrors()).toEqual([
       "",
-      [`property someString(${someString}) is not a string`],
+      [`property someString(${someString}) is not string`],
     ]);
   });
 });

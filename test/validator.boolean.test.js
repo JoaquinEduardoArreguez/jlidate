@@ -25,7 +25,7 @@ describe("Jlidate boolean validator", () => {
     expect(validationResult).toEqual(false);
     expect(validator.getErrors()).toEqual([
       "",
-      [`property someBoolean(${someBoolean}) is not a boolean`],
+      [`property someBoolean(${someBoolean}) is not boolean`],
     ]);
   });
 });

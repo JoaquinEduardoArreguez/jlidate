@@ -13,7 +13,7 @@ describe("Jlidate number validator", () => {
     expect(validator.validate({ someNumber })).toEqual(true);
   });
 
-  test("should fail if property is not a number", () => {
+  test("should fail if property is not number", () => {
     const someNumber = "5";
 
     const validator = new Jlidate({
@@ -26,7 +26,7 @@ describe("Jlidate number validator", () => {
     expect(validator.validate({ someNumber })).toEqual(false);
     expect(validator.getErrors()).toEqual([
       "",
-      ["property someNumber(5) is not a number"],
+      ["property someNumber(5) is not number"],
     ]);
   });
 
