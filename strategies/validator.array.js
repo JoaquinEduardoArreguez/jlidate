@@ -1,10 +1,26 @@
 "use strict";
 
 function apply({ key, value }, conditions = {}) {
-  const errors = [];
-  if (typeof value === conditions.type) {
+  const strategies = require("./index");
+  let errors = [];
+  if (Array.isArray(value)) {
+    // Validate each item in array against the schema present on the "items" property
+    // if "items" property is not present, only validate if the property is array
+    if (conditions.items) {
+      value.forEach((item) => {
+        errors = errors.concat(
+          strategies[conditions.items.type].apply(
+            {
+              key,
+              value: item,
+            },
+            conditions.items
+          )
+        );
+      });
+    }
   } else {
-    errors.push(`property ${key}(${value}) is not a ${conditions.type}`);
+    errors.push(`property ${key}(${value}) is not ${conditions.type}`);
   }
   return errors;
 }
