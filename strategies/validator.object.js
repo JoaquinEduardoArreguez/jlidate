@@ -1,8 +1,7 @@
 "use strict";
 
-const strategies = require("./index");
-
 function apply({ key, value }, conditions = {}) {
+  const strategies = require("./index");
   let errors = [];
   if (typeof value === conditions.type) {
     for (const [dataKey, dataValue] of Object.entries(value)) {
