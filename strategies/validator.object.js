@@ -38,14 +38,3 @@ function apply({ key, value }, conditions = {}) {
 }
 
 module.exports = { apply };
-
-/*
-const objectExample = {
-  type: "object",
-  properties: {
-    id: { type: "number" },
-    type: { type: "string" },
-  },
-  required: [],
-};
-*/

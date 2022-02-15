@@ -4,8 +4,6 @@ function apply({ key, value }, conditions = {}) {
   const strategies = require("./index");
   let errors = [];
   if (Array.isArray(value)) {
-    // Validate each item in array against the schema present on the "items" property
-    // if "items" property is not present, only validate if the property is array
     if (conditions.items) {
       value.forEach((item) => {
         errors = errors.concat(
