@@ -49,7 +49,11 @@
 ```json
 // Description
 {
-  "type": "string"
+  "type": "string",
+  "minLength": "minimum string length allowed",
+  "maxLength": "maximum string length allowed",
+  "pattern": "regexp pattern used to test this string",
+  "format": "common-use formats: date, date-time, email, uuid,uri"
 }
 ```
 
@@ -59,7 +63,11 @@
   "type": "object",
   "properties": {
     "someString": {
-      "type": "string"
+      "type": "string",
+      "minLenth": 0,
+      "maxLength": 20,
+      "pattern":/hello.*/,
+      "format": "email"
     }
   }
 }
