@@ -69,6 +69,7 @@ describe("Jlidate object validator", () => {
           mother: "josefa",
         },
       },
+      tags: ["argentine", "married"],
     };
 
     const someObjectSchema = {
@@ -91,6 +92,10 @@ describe("Jlidate object validator", () => {
               },
             },
           },
+        },
+        tags: {
+          type: "array",
+          items: { type: "string" },
         },
       },
     };
