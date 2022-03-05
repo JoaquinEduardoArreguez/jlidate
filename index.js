@@ -24,10 +24,6 @@ class Jlidate {
   }
 
   validate(data) {
-    const respond = () => {
-      return !this.getErrors().length;
-    };
-
     this.validationErrors = this.objectValidator.apply(
       {
         key: "",
@@ -36,7 +32,7 @@ class Jlidate {
       this.schema
     );
 
-    return respond();
+    return !this.getErrors().length;
   }
 }
 
