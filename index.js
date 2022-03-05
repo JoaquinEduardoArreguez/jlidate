@@ -11,16 +11,8 @@ class Jlidate {
     return this.validationErrors;
   }
 
-  setError(error) {
-    this.validationErrors.push(error);
-  }
-
   getSchema() {
     return this.schema;
-  }
-
-  isObject(value) {
-    return !!value && value.constructor === Object;
   }
 
   validate(data) {
