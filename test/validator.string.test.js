@@ -186,7 +186,7 @@ describe("Jlidate string validator", () => {
     expect(validationResultUUID).toEqual(true);
   });
 
-  test("should fail if string does not complain to email format", () => {
+  test("should fail if string does not complain to uuid format", () => {
     const someInvalidUUID = "this-is-not-an-UUID";
     const validator = new Jlidate({
       type: "object",

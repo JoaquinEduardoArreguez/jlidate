@@ -31,7 +31,7 @@ describe("Jlidate object validator", () => {
     expect(validationResult).toEqual(true);
   });
 
-  test("should pass if property is not an object", () => {
+  test("should fail if property is not an object", () => {
     const someObject = "this is not an object";
 
     const someObjectSchema = {
@@ -53,6 +53,52 @@ describe("Jlidate object validator", () => {
     const validationResult = validator.validate(someObject);
     expect(validationResult).toEqual(false);
     expect(validator.getErrors()).toEqual(["", ["property  is not object"]]);
+  });
+
+  test("should pass if schema checks properties that data doesn't have", () => {
+    const someObject = {
+      name: "joaquin",
+      dni: 36409123,
+    };
+
+    const someObjectSchema = {
+      type: "object",
+      properties: {
+        name: { type: "string" },
+        dni: { type: "number" },
+        family: {
+          type: "object",
+          properties: {
+            father: { type: "string" },
+            mother: { type: "string" },
+          },
+        },
+      },
+    };
+
+    const validator = new Jlidate(someObjectSchema);
+    const validationResult = validator.validate(someObject);
+    expect(validationResult).toEqual(true);
+  });
+
+  test("should fail if data has properties that are not present in schema", () => {
+    const someObject = {
+      name: "joaquin",
+      dni: 36409123,
+      family: "doesn't have",
+    };
+
+    const someObjectSchema = {
+      type: "object",
+      properties: {
+        name: { type: "string" },
+        dni: { type: "number" },
+      },
+    };
+
+    const validator = new Jlidate(someObjectSchema);
+    const validationResult = validator.validate(someObject);
+    expect(validationResult).toEqual(false);
   });
 
   test("should fail if object does not conform to schema", () => {
