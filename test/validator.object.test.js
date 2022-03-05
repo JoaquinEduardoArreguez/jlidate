@@ -81,11 +81,37 @@ describe("Jlidate object validator", () => {
     expect(validationResult).toEqual(true);
   });
 
-  test("should fail if data has properties that are not present in schema", () => {
+  test("should pass if data has all required properties", () => {
     const someObject = {
       name: "joaquin",
       dni: 36409123,
-      family: "doesn't have",
+    };
+
+    const someObjectSchema = {
+      type: "object",
+      properties: {
+        name: { type: "string" },
+        dni: { type: "number" },
+        family: {
+          type: "object",
+          properties: {
+            father: { type: "string" },
+            mother: { type: "string" },
+          },
+        },
+      },
+      required: ["name", "dni"],
+    };
+
+    const validator = new Jlidate(someObjectSchema);
+    const validationResult = validator.validate(someObject);
+    expect(validationResult).toEqual(true);
+  });
+
+  test("should fail if data has not some property required in schema", () => {
+    const someObject = {
+      name: "joaquin",
+      dni: 36409123,
     };
 
     const someObjectSchema = {
@@ -94,6 +120,7 @@ describe("Jlidate object validator", () => {
         name: { type: "string" },
         dni: { type: "number" },
       },
+      required: ["family"],
     };
 
     const validator = new Jlidate(someObjectSchema);

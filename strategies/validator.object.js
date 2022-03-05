@@ -4,8 +4,21 @@ function apply({ key, value }, conditions = {}) {
   const strategies = require("./index");
   let errors = [];
   if (typeof value === conditions.type) {
+    if (conditions.required) {
+      const dataProperties = Object.keys(value);
+      conditions.required.forEach((property) => {
+        if (!dataProperties.includes(property)) {
+          errors.push(`property ${property} is required`);
+          //     delete conditions.properties.property;
+        }
+      });
+    }
+
     for (const [dataKey, dataValue] of Object.entries(value)) {
-      if (conditions.properties[dataKey].type === "object") {
+      if (
+        conditions.properties[dataKey] &&
+        conditions.properties[dataKey].type === "object"
+      ) {
         errors = errors.concat(
           apply(
             {
@@ -16,15 +29,17 @@ function apply({ key, value }, conditions = {}) {
           )
         );
       } else {
-        errors = errors.concat(
-          strategies[conditions.properties[dataKey].type].apply(
-            {
-              key: dataKey,
-              value: dataValue,
-            },
-            conditions.properties[dataKey]
-          )
-        );
+        if (conditions.properties[dataKey]) {
+          errors = errors.concat(
+            strategies[conditions.properties[dataKey].type].apply(
+              {
+                key: dataKey,
+                value: dataValue,
+              },
+              conditions.properties[dataKey]
+            )
+          );
+        }
       }
     }
   } else {
