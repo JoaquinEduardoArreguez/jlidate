@@ -53,7 +53,7 @@
   "minLength": "minimum string length allowed",
   "maxLength": "maximum string length allowed",
   "pattern": "regexp pattern used to test this string",
-  "format": "common-use formats: date, date-time, email, uuid,uri"
+  "format": "common-use formats: date, email, uuid"
 }
 ```
 

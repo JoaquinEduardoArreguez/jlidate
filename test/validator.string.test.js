@@ -113,6 +113,97 @@ describe("Jlidate string validator", () => {
     ]);
   });
 
+  test("should pass if string complains to date format", () => {
+    const someDate = new Date().toISOString();
+    const validator = new Jlidate({
+      type: "object",
+      properties: {
+        someDate: { type: "string", format: "date" },
+      },
+    });
+    const validationResult = validator.validate({ someDate });
+    expect(validationResult).toEqual(true);
+  });
+
+  test("should fail if string does not complain to date format", () => {
+    const someInvalidDate = "3 february wed";
+    const validator = new Jlidate({
+      type: "object",
+      properties: {
+        someInvalidDate: { type: "string", format: "date" },
+      },
+    });
+    const validationResult = validator.validate({ someInvalidDate });
+    expect(validationResult).toEqual(false);
+    expect(validator.getErrors()).toEqual([
+      "",
+      [
+        `someInvalidDate(${someInvalidDate}) string does not complain to date format`,
+      ],
+    ]);
+  });
+
+  test("should pass if string complains to email format", () => {
+    const someEmail = "john.doe@gmail.com";
+    const validator = new Jlidate({
+      type: "object",
+      properties: {
+        someEmail: { type: "string", format: "email" },
+      },
+    });
+    const validationResult = validator.validate({ someEmail });
+    expect(validationResult).toEqual(true);
+  });
+
+  test("should fail if string does not complain to email format", () => {
+    const someInvalidEmail = "pepeFrog.net@gma@il.io";
+    const validator = new Jlidate({
+      type: "object",
+      properties: {
+        someInvalidEmail: { type: "string", format: "email" },
+      },
+    });
+    const validationResult = validator.validate({ someInvalidEmail });
+    expect(validationResult).toEqual(false);
+    expect(validator.getErrors()).toEqual([
+      "",
+      [
+        `someInvalidEmail(${someInvalidEmail}) string does not complain to email format`,
+      ],
+    ]);
+  });
+
+  test("should pass if string complains to uuid format", () => {
+    const someUUID = "9607a1b4-9c90-11ec-b909-0242ac120002";
+
+    const validator = new Jlidate({
+      type: "object",
+      properties: {
+        someUUID: { type: "string", format: "uuid" },
+      },
+    });
+    const validationResultUUID = validator.validate({ someUUID });
+    expect(validationResultUUID).toEqual(true);
+  });
+
+  test("should fail if string does not complain to email format", () => {
+    const someInvalidUUID = "this-is-not-an-UUID";
+    const validator = new Jlidate({
+      type: "object",
+      properties: {
+        someInvalidUUID: { type: "string", format: "uuid" },
+      },
+    });
+    const validationResult = validator.validate({ someInvalidUUID });
+    expect(validationResult).toEqual(false);
+    expect(validator.getErrors()).toEqual([
+      "",
+      [
+        `someInvalidUUID(${someInvalidUUID}) string does not complain to uuid format`,
+      ],
+    ]);
+  });
+
   test("should pass if string complains to all conditions", () => {
     const someString = "hello joaquin";
     const validator = new Jlidate({

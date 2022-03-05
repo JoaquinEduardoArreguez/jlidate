@@ -1,5 +1,14 @@
 "use strict";
 
+const formatValidators = {
+  date: (data) => !isNaN(Date.parse(data)),
+  email: (data) => /.*@.*.com/gi.test(data),
+  uuid: (data) =>
+    /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi.test(
+      data
+    ),
+};
+
 function apply({ key, value }, conditions = {}) {
   const errors = [];
   if (typeof value === conditions.type) {
@@ -30,6 +39,14 @@ function apply({ key, value }, conditions = {}) {
     ) {
       errors.push(
         `${key}(${value}) string length should be more than ${conditions.maxLength}`
+      );
+    }
+
+    // formats
+    // if the format is/is not a valid option should be checked in the constructor
+    if (conditions.format && !formatValidators[conditions.format](value)) {
+      errors.push(
+        `${key}(${value}) string does not complain to ${conditions.format} format`
       );
     }
   } else {
