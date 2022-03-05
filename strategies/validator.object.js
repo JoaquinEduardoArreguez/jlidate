@@ -9,7 +9,6 @@ function apply({ key, value }, conditions = {}) {
       conditions.required.forEach((property) => {
         if (!dataProperties.includes(property)) {
           errors.push(`property ${property} is required`);
-          //     delete conditions.properties.property;
         }
       });
     }
