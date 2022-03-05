@@ -120,12 +120,16 @@ describe("Jlidate object validator", () => {
         name: { type: "string" },
         dni: { type: "number" },
       },
-      required: ["family"],
+      required: ["family", "cousins"],
     };
 
     const validator = new Jlidate(someObjectSchema);
     const validationResult = validator.validate(someObject);
     expect(validationResult).toEqual(false);
+    expect(validator.getErrors()).toEqual([
+      "",
+      ["property family is required", "property cousins is required"],
+    ]);
   });
 
   test("should fail if object does not conform to schema", () => {
