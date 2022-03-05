@@ -20,9 +20,8 @@ function apply({ key, value }, conditions = {}) {
     }
 
     // minLength
-    // TODO si minLength = 0 la validación del if dará false
     if (
-      conditions.minLength &&
+      conditions.hasOwnProperty("minLength") &&
       !isNaN(conditions.minLength) &&
       value.length < conditions.minLength
     ) {
@@ -33,7 +32,7 @@ function apply({ key, value }, conditions = {}) {
 
     //maxLength
     if (
-      conditions.maxLength &&
+      conditions.hasOwnProperty("maxLength") &&
       !isNaN(conditions.maxLength) &&
       value.length > conditions.maxLength
     ) {
