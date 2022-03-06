@@ -79,7 +79,8 @@
 // Description
 {
   "type": "object",
-  "properties": "Object where each property is the schema used to validate that property"
+  "properties": "Object where each property is the schema used to validate that property",
+  "required":"array with names of required properties, strings"
 }
 ```
 
@@ -102,7 +103,8 @@
         "someString": {"type": "string"},        
       }
     }
-  }
+  },
+  "required":["someBoolean","someString"]
 }
 ```
 
